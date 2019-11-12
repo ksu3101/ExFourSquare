@@ -6,4 +6,10 @@ package com.sw.model.base.helper
  */
 interface SharedPreferenceHelper {
 
+    fun saveAccessToken(token: String)
+
+    fun getAccessToken(): String?
+
+    fun removeAccessToken()
+
 }

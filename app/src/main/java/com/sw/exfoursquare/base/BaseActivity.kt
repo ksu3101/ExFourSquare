@@ -1,16 +1,27 @@
 package com.sw.exfoursquare.base
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.example.KOIN_CURRENT_ACTIVITY
+import com.sw.common.KOIN_CURRENT_ACTIVITY
 import com.example.model.domain.common.*
+import com.sw.common.INTENT_REQUEST_AUTH_CODE
 import com.sw.model.base.helper.MessageHelper
 import com.sw.model.domain.AppStore
+import com.sw.model.domain.auth.RequestAccessTokenByAuthCodeAction
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
+import com.sw.common.INTENT_RESULT_CODE
+import com.sw.common.INTENT_RESULT_DENIED
+import com.sw.common.INTENT_RESULT_ERROR
+import com.sw.common.INTENT_RESULT_ERROR_MESSAGE
+import java.lang.NullPointerException
+
 
 /**
  * @author burkd
@@ -93,6 +104,47 @@ abstract class BaseActivity : AppCompatActivity() {
     private fun checkCompositeDisposableInstanceAndCreator() {
         if (!::compositeDisposable.isInitialized) {
             compositeDisposable = CompositeDisposable()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d("BaseActivity", "// onActivityResult : requestCode = $requestCode")
+
+        when (requestCode) {
+            INTENT_REQUEST_AUTH_CODE -> {
+                handleResultOfAuthCodeRequest(resultCode, data)
+            }
+            else -> super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun handleResultOfAuthCodeRequest(resultCode: Int, data: Intent?) {
+        if (data == null) throw NullPointerException("AuthCode Result data is Null.")
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                val isDenied = data.getBooleanExtra(INTENT_RESULT_DENIED, false)
+                val authCode = data.getStringExtra(INTENT_RESULT_CODE)
+
+                Log.d("BaseActivity", "// onActivityResult : authCode = $authCode")
+                Log.d("BaseActivity", "// onActivityResult : isDenied = $isDenied")
+
+                if (isDenied) {
+                    val errorCode = data.getStringExtra(INTENT_RESULT_ERROR)
+                    val errorMessage = data.getStringExtra(INTENT_RESULT_ERROR_MESSAGE)
+                    if (errorCode.isEmpty()) {
+                        stateStore.dispatch(RequestAccessTokenByAuthCodeAction(authCode))
+                    } else {
+                        stateStore.dispatch(ShowingErrorToast(message = errorMessage))
+                    }
+                    Log.d("BaseActivity", "// onActivityResult : isDenied = $errorCode")
+                    Log.d("BaseActivity", "// onActivityResult : isDenied = $errorMessage")
+                } else {
+                    stateStore.dispatch(RequestAccessTokenByAuthCodeAction(authCode))
+                }
+            }
+            else -> {
+                stateStore.dispatch(ShowingErrorToast(com.sw.exfoursquare.R.string.c_error_canceled_authcode))
+            }
         }
     }
 

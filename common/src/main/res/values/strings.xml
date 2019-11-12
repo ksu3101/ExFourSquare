@@ -4,6 +4,7 @@
     <!-- common -->
     <string name="c_yes">예</string>
     <string name="c_no">아니오 </string>
+    <string name="c_error_canceled_authcode">인증 과정을 취소 하였습니다. </string>
 
 </resources>
 

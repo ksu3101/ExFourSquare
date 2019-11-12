@@ -1,4 +1,4 @@
-package com.example.model.domain.auth.dto
+package com.sw.model.domain.auth.dto
 
 /**
  * @author burkd
@@ -6,5 +6,5 @@ package com.example.model.domain.auth.dto
  */
 data class AccessToken(
     val accessToken: String,
-    val userId: Int
+    val exception: Exception? = null
 )

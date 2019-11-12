@@ -9,3 +9,12 @@ import com.sw.model.base.redux.Action
 
 sealed class FourSquareAuthAction : Action
 
+object RequestAuthCodeAction : FourSquareAuthAction()
+
+data class RequestAccessTokenByAuthCodeAction(
+    val authCode: String
+): FourSquareAuthAction()
+
+data class AccessTokenReceiveSuccessfulAction(
+    val accessToken: String
+): FourSquareAuthAction()

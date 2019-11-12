@@ -1,6 +1,7 @@
 package com.sw.exfoursquare.base.helper
 
 import android.content.SharedPreferences
+import com.sw.common.PREF_ACCESS_TOKEN_KEY
 import com.sw.model.base.helper.SharedPreferenceHelper
 
 /**
@@ -11,6 +12,18 @@ import com.sw.model.base.helper.SharedPreferenceHelper
 class SharedPreferenceHelperImpl(
     val sharedPref: SharedPreferences
 ) : SharedPreferenceHelper {
+
+    override fun saveAccessToken(token: String) {
+        saveItem(PREF_ACCESS_TOKEN_KEY, token)
+    }
+
+    override fun getAccessToken(): String? {
+        return getString(PREF_ACCESS_TOKEN_KEY)
+    }
+
+    override fun removeAccessToken() {
+        remove(PREF_ACCESS_TOKEN_KEY)
+    }
 
     private inline fun <reified T> saveItem(key: String, value: T) {
         val editor = sharedPref.edit()

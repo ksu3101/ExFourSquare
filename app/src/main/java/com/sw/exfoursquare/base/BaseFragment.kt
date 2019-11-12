@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.sw.exfoursquare.BR
 import com.sw.model.base.BaseLifecycleOwnViewModel
 import com.sw.model.base.NavigationHelper
 import com.sw.model.base.exts.rx.isStateType

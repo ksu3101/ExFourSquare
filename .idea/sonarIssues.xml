@@ -38,6 +38,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/helper/FourSquareAuthCodeHelperImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/helper/MessageHelperImpl.kt">
           <value>
             <set />
@@ -168,7 +173,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/helper/FourSquareAuthCodeHelper.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/helper/MessageHelper.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/helper/NavigationHelper.kt">
           <value>
             <set />
           </value>
@@ -203,6 +218,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/FourSquareAuthActionProcessor.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/FourSquareAuthReducer.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/FourSquareAuthRepository.kt">
           <value>
             <set />
@@ -214,6 +239,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/FourSquareAuthVM.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/dto/AccessToken.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/dto/AuthCode.kt">
           <value>
             <set />
           </value>
