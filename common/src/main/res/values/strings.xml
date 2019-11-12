@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">common</string>
+
+    <!-- common -->
+    <string name="c_yes">예</string>
+    <string name="c_no">아니오 </string>
+
+</resources>
+
+
