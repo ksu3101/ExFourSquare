@@ -1,8 +1,13 @@
 package com.sw.model.domain
 
+import android.util.Log
+import com.sw.common.LOG_TAG
+import com.sw.common.extensions.getSuperClassNames
 import com.sw.model.base.redux.Action
+import com.sw.model.base.redux.ActionProcessorMiddleWare
 import com.sw.model.base.redux.Dispatcher
-import com.sw.model.base.redux.MiddleWare
+import com.sw.model.base.redux.LoggerMiddleware
+import com.sw.model.base.redux.Middleware
 import com.sw.model.base.redux.Reducer
 import com.sw.model.base.redux.State
 import com.sw.model.base.redux.Store
@@ -10,7 +15,9 @@ import com.sw.model.base.redux.getStateTypeOfReducer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.BehaviorSubject
+import org.koin.core.Koin
 import org.koin.core.KoinComponent
+import org.koin.core.qualifier.named
 
 /**
  * @author ksu3101
@@ -22,14 +29,15 @@ class AppStore(
     initializedState: AppState
 ) : Store<AppState>, KoinComponent {
     private val stateEmitter: BehaviorSubject<AppState> = BehaviorSubject.create()
+    private val middleWares: Array<Middleware<AppState>> = getKoin().get()
     private var state: AppState = initializedState
-    private val middleWares: List<MiddleWare<AppState>> = getKoin().getAll()
     private var dispatcher: Dispatcher = { action: Action ->
         state = reducer.reduce(getCurrentState(), action)
         stateEmitter.onNext(state)
     }
 
     init {
+        Log.w("TAG", "////////////// middleWares size = ${middleWares.size}")
         dispatcher = middleWares.foldRight(dispatcher) { middleWare, next ->
             middleWare.create(this, next)
         }
@@ -52,6 +60,14 @@ data class AppState(
         val currentState = states.get(stateType.simpleName)
                 ?: throw NullPointerException("$stateType has not founded error.")
         return currentState as S
+    }
+
+    fun printStateLogs() {
+        Log.d(LOG_TAG, "AppState (\n")
+        for (state in states.values) {
+            Log.d(LOG_TAG, String.format("\t[%-24s]\t%s \n", state.getSuperClassNames(), state))
+        }
+        Log.d(LOG_TAG, ")")
     }
 }
 

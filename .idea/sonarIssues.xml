@@ -118,6 +118,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/common/src/main/java/com/sw/common/extensions/Any.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/common/src/main/java/com/sw/common/extensions/FragmentActivityExts.kt">
           <value>
             <set />
@@ -199,6 +204,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/redux/ActionProcessorMiddleWare.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/redux/ActionProcessorMiddleware.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/redux/LoggerMiddleware.kt">
           <value>
             <set />
           </value>

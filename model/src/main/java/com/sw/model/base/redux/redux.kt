@@ -25,6 +25,6 @@ interface Store<S: State> {
 
 typealias Dispatcher = (Action) -> Unit
 
-interface MiddleWare<S: State> {
+interface Middleware<S: State> {
     fun create(store: Store<S>, next: Dispatcher): Dispatcher
 }

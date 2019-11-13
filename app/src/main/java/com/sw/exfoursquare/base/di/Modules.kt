@@ -20,6 +20,8 @@ import com.sw.model.base.helper.ResourceHelper
 import com.sw.model.base.helper.SharedPreferenceHelper
 import com.sw.model.base.redux.ActionProcessorMiddleWare
 import com.sw.model.base.redux.CombinedActionProcessors
+import com.sw.model.base.redux.LoggerMiddleware
+import com.sw.model.base.redux.Middleware
 import com.sw.model.domain.AppReducer
 import com.sw.model.domain.AppState
 import com.sw.model.domain.AppStore
@@ -52,9 +54,27 @@ val appModule = module {
         AppState(mutableMapOf())
     }
     single {
-        AppStore(AppReducer(), get())
+        AppStore(
+            AppReducer(),
+            get()
+        )
     }
-
+    single<Array<Middleware<AppState>>> {
+        arrayOf(
+            ActionProcessorMiddleWare(
+                CombinedActionProcessors(
+                    listOf(
+                        FourSquareAuthActionProcessor(
+                            get(parameters = { parametersOf(IS_MOCK) }),
+                            get(),
+                            get()
+                        )
+                    )
+                )
+            ),
+            LoggerMiddleware()
+        )
+    }
     single<SharedPreferenceHelper> {
         SharedPreferenceHelperImpl(PreferenceManager.getDefaultSharedPreferences(androidApplication()))
     }
@@ -73,7 +93,7 @@ val repositories = module {
         Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .baseUrl("https://foursquare.com/oauth2")
+            .baseUrl("https://foursquare.com/oauth2/")
             .client(get<OkHttpClient>())
             .build()
     }
@@ -90,24 +110,6 @@ val repositories = module {
     }
 }
 
-val middleWares = module {
-    single {
-        ActionProcessorMiddleWare(
-            CombinedActionProcessors(
-                listOf(
-                    FourSquareAuthActionProcessor(
-                        get(),
-                        get(parameters = { parametersOf(IS_MOCK) }),
-                        get(),
-                        get()
-                    )
-
-                )
-            )
-        )
-    }
-}
-
 val helpers = module {
     // todo : create activity scope
     single<FourSquareAuthCodeHelper> { FourSquareAuthCodeHelperImpl(getKoin().currentActivity()) }
@@ -120,7 +122,13 @@ val reducers = module {
 }
 
 val viewModels = module {
-    viewModel<BaseLifecycleOwnViewModel<FourSquareAuthState>> { FourSquareAuthVM(get(), get(), get()) }
+    viewModel<BaseLifecycleOwnViewModel<FourSquareAuthState>> {
+        FourSquareAuthVM(
+            get(),
+            get(),
+            get()
+        )
+    }
 }
 
 private fun Koin.currentActivity(): BaseActivity {

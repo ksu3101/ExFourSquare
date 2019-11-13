@@ -1,6 +1,5 @@
 package com.sw.model.domain.auth
 
-import android.util.Log
 import com.sw.model.base.BaseLifecycleOwnViewModel
 import com.sw.model.base.helper.FourSquareAuthCodeHelper
 import com.sw.model.base.helper.SharedPreferenceHelper

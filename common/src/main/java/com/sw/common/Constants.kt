@@ -7,6 +7,7 @@ package com.sw.common
  */
 
 const val IS_MOCK = false   // todo : 앱 내 에서 변경 할 수 있게 수정..
+const val LOG_TAG = "ExFSQ"
 
 const val KOIN_CURRENT_ACTIVITY = "current_activity_key"
 

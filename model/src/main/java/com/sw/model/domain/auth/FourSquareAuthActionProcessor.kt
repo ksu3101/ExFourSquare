@@ -11,6 +11,7 @@ import com.sw.model.base.helper.SharedPreferenceHelper
 import com.sw.model.base.redux.Action
 import com.sw.model.base.redux.ActionProcessor
 import com.sw.model.base.redux.Store
+import com.sw.model.domain.AppState
 import com.sw.model.domain.AppStore
 import io.reactivex.Observable
 
@@ -19,15 +20,14 @@ import io.reactivex.Observable
  * @since 2019-11-13
  */
 class FourSquareAuthActionProcessor(
-    val appStore: AppStore,
     val repo: FourSquareAuthRepository,
     val prefHelper: SharedPreferenceHelper,
     val resourceHelper: ResourceHelper
-) : ActionProcessor<FourSquareAuthState> {
+) : ActionProcessor<AppState> {
 
     override fun run(
         action: Observable<Action>,
-        store: Store<FourSquareAuthState>
+        store: Store<AppState>
     ): Observable<out Action> {
         return action.compose(actionProcessor)
     }

@@ -19,6 +19,7 @@ class FourSquareAuthRepositoryImpl(
         return api.requestAccessToken(
             FourSquareAuthCodeHelperImpl.CLIENT_ID,
             "EFZADCIFXY2O3YEXX3LQLAW1Q34DSDIGZIDPTI2ZGG0ONAYX",
+            "authorization_code",
             authCode
         ).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

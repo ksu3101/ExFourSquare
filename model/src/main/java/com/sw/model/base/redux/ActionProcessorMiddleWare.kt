@@ -15,7 +15,7 @@ interface ActionProcessor<S : State> {
 
 class ActionProcessorMiddleWare<S : State>(
     val actionProcessor: ActionProcessor<S>
-) : MiddleWare<S> {
+) : Middleware<S> {
     override fun create(store: Store<S>, next: Dispatcher): Dispatcher {
         val actionEmitter: PublishSubject<Action> = PublishSubject.create()
         val disposable = actionProcessor.run(actionEmitter, store).subscribe {
