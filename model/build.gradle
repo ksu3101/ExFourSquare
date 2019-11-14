@@ -59,6 +59,7 @@ dependencies {
 
     testImplementation "junit:junit:$jUnit"
     testImplementation "org.mockito:mockito-core:$mockito"
+    testImplementation "org.koin:koin-test:$koin"
 
     implementation project(':common')
 }

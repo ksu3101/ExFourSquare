@@ -5,5 +5,5 @@ package com.sw.model.domain.auth.dto
  * @since 2019-11-11
  */
 data class AccessToken(
-    val accessToken: String
+    val access_token: String
 )

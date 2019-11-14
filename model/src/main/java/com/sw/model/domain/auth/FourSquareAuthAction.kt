@@ -10,7 +10,7 @@ import com.sw.model.domain.auth.dto.User
 
 sealed class FourSquareAuthAction : Action
 
-object RequestAuthCodeAction : FourSquareAuthAction()
+object InitlaizeAction: FourSquareAuthAction()
 
 data class RequestAccessTokenByAuthCodeAction(
     val authCode: String

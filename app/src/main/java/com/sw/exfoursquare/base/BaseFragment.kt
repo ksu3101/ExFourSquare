@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.sw.exfoursquare.BR
 import com.sw.model.base.BaseLifecycleOwnViewModel
-import com.sw.model.base.NavigationHelper
+import com.sw.model.base.helper.NavigationHelper
 import com.sw.model.base.exts.rx.isStateType
 import com.sw.model.base.redux.State
 import com.sw.model.domain.AppStore

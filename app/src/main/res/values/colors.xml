@@ -4,4 +4,12 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="white">#FFF</color>
+
+    <color name="btn_primary_bg_default">#5eb7b7</color>
+    <color name="btn_primary_bg_pressed">#5eb7b7</color>
+    <color name="btn_primary_bg_disabled">#dbdbdb</color>
+    <color name="btn_primary_text_default">#ffffff</color>
+    <color name="btn_primary_text_disabled">#ffffff</color>
+
 </resources>

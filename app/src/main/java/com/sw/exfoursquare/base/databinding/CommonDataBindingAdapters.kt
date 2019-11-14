@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 /**
  * @author burkd
@@ -22,6 +23,18 @@ fun loadImageUrl(iv: ImageView, url: String?) {
     } else {
         Glide.with(iv.context)
             .load(url)
+            .into(iv)
+    }
+}
+
+@BindingAdapter("circleImageLoad")
+fun loadImageUrlAndCircle(iv: ImageView, url: String?) {
+    if (url.isNullOrEmpty()) {
+        iv.setImageDrawable(null)
+    } else {
+        Glide.with(iv.context)
+            .load(url)
+            .apply(RequestOptions.circleCropTransform())
             .into(iv)
     }
 }

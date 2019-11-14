@@ -11,13 +11,13 @@ interface State
 
 interface Action
 
-interface Reducer<S: State> {
+interface Reducer<S : State> {
+    val initializedState: S
+
     fun reduce(oldState: S, resultAction: Action): S
 }
 
-inline fun <reified S: State> Reducer<S>.getStateTypeOfReducer() : Class<S> = S::class.java
-
-interface Store<S: State> {
+interface Store<S : State> {
     fun dispatch(action: Action)
     fun getStateListener(): Observable<S>
     fun getCurrentState(): S
@@ -25,6 +25,6 @@ interface Store<S: State> {
 
 typealias Dispatcher = (Action) -> Unit
 
-interface Middleware<S: State> {
+interface Middleware<S : State> {
     fun create(store: Store<S>, next: Dispatcher): Dispatcher
 }

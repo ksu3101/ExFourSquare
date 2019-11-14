@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+          android:enterFadeDuration="@integer/btn_enter_anim_duration"
+          android:exitFadeDuration="@integer/btn_exit_anim_duration">
+
+    <!-- Disabled Status -->
+    <item android:state_enabled="false"
+          android:color="@color/btn_primary_text_disabled"/>
+
+    <!-- Pressed Status -->
+    <item android:state_pressed="true"
+          android:color="@color/btn_primary_text_default"/>
+
+    <!-- Default Status -->
+    <item android:color="@color/btn_primary_text_default"/>
+
+</selector>

@@ -1,4 +1,4 @@
-package com.sw.model.base
+package com.sw.model.base.helper
 
 import com.sw.model.base.redux.State
 

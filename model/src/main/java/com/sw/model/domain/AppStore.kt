@@ -9,7 +9,6 @@ import com.sw.model.base.redux.Middleware
 import com.sw.model.base.redux.Reducer
 import com.sw.model.base.redux.State
 import com.sw.model.base.redux.Store
-import com.sw.model.base.redux.getStateTypeOfReducer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.BehaviorSubject
@@ -39,7 +38,7 @@ class AppStore(
     }
 
     override fun getStateListener(): Observable<AppState> =
-            stateEmitter.hide().observeOn(AndroidSchedulers.mainThread())
+        stateEmitter.hide().observeOn(AndroidSchedulers.mainThread())
 
     override fun getCurrentState(): AppState = state
 
@@ -49,11 +48,10 @@ class AppStore(
 }
 
 data class AppState(
-        val states: Map<String, State>
+    val states: Map<String, State>
 ) : State {
-    inline fun <reified S: State> getCurrentState(stateType: Class<S>) : S {
-        val currentState = states.get(stateType.simpleName)
-                ?: throw NullPointerException("$stateType has not founded error.")
+    inline fun <reified S : State> getCurrentState(key: String): S? {
+        val currentState = states.get(key) ?: return null
         return currentState as S
     }
 
@@ -67,20 +65,29 @@ data class AppState(
 }
 
 class AppReducer : Reducer<AppState>, KoinComponent {
+    override val initializedState: AppState = getKoin().get()
+
     override fun reduce(oldState: AppState, resultAction: Action): AppState {
         return reduces<State, Reducer<State>>(oldState, resultAction)
     }
 
-    private inline fun <reified S: State, reified R: Reducer<S>> reduces(oldState: AppState, resultAction: Action): AppState {
+    private inline fun <reified S : State, reified R : Reducer<S>> reduces(
+        oldState: AppState,
+        resultAction: Action
+    ): AppState {
         val states = mutableMapOf<String, S>()
         getReducers<S, R>().map {
-            val stateType = it.getStateTypeOfReducer()
-            states.put(stateType.simpleName, it.reduce(oldState.getCurrentState(stateType), resultAction))
+            val reducerName = it.javaClass.simpleName
+            states.put(
+                reducerName,
+                it.reduce(oldState.getCurrentState(reducerName) ?: it.initializedState, resultAction)
+            )
         }
         return AppState(states)
     }
 
     private inline fun <reified S : State, reified R : Reducer<S>> getReducers(): List<R> =
-            getKoin().getAll()
+        getKoin().get()
+
 }
 

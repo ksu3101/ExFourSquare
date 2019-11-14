@@ -39,10 +39,10 @@ class ProgressDialogHelperImpl : ProgressDialogHelper, KoinComponent {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             val progressView = LayoutInflater.from(activity).inflate(R.layout.dialog_progress, null)
             this.progressDialog = ProgressDialog(activity)
+            progressDialog.show()
             progressDialog.setContentView(progressView)
             progressDialog.setCancelable(false)
             progressDialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-            progressDialog.show()
         }
     }
 

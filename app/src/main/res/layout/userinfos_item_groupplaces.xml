@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.sw.model.domain.auth.FourSquarePlaceGroupItemVM" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <ImageView
+            android:id="@+id/userinfos_item_group_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_list" />
+
+        <TextView
+            android:id="@+id/userinfos_item_group_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/userinfos_item_group_ic"
+            android:paddingLeft="12dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:textColor="#fc7978"
+            android:textSize="16sp"
+            android:text="@{vm.myPlacesListName}"
+            tools:text="My Saved Places, My Liked Places" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/userinfos_item_group_ic"
+            android:background="#ffafb0"/>
+
+    </RelativeLayout>
+
+</layout>

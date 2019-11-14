@@ -1,7 +1,7 @@
 package com.sw.exfoursquare.repositories.user
 
 import com.sw.common.response.FsqResponse
-import com.sw.model.domain.auth.dto.User
+import com.sw.model.domain.auth.dto.UserWrapper
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,6 +16,6 @@ interface FourSquareUsersApi {
     fun retrieveActingUserSelfDetails(
         @Query("oauth_token") accessToken: String,
         @Query("v") version: String
-    ): Single<FsqResponse<User>>
+    ): Single<FsqResponse<UserWrapper>>
 
 }

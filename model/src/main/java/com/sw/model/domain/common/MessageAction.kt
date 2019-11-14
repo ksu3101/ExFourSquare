@@ -1,4 +1,4 @@
-package com.example.model.domain.common
+package com.sw.model.domain.common
 
 import androidx.annotation.StringRes
 import com.sw.model.base.redux.Action

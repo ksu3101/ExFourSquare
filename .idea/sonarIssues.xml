@@ -133,6 +133,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/repositories/user/FourSquareUserRepositoryMockImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/repositories/user/FourSquareUsersApi.java">
           <value>
             <set />
@@ -153,6 +158,56 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/view/auth/FourSquareAuthActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/view/auth/FourSquareAuthFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/view/auth/FourSquareMyGroupListFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/view/auth/FourSquareUserAuthHelper.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/view/auth/FourSquareUserAuthNavigationHelper.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/view/auth/FourSquareUserAuthNavigationHelperImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/view/userinfos/UserInfoActivitiy.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/view/userinfos/UserInfoFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/button_primary_rounded.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/button_primary_text.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/auth_activity.xml">
           <value>
             <set />
@@ -168,7 +223,47 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/mygroupitems_fragment.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/mygroupitems_item_myplace.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/userinfo_fragment.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/userinfos_item_groupplaces.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/ids.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/integer.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <value>
             <set />
           </value>
@@ -249,6 +344,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/RxDisposer.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/exts/livedata/LiveDataExts.kt">
           <value>
             <set />
           </value>
@@ -363,6 +463,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/FourSquarePlaceGroupItemVM.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/FourSquarePlaceItemVM.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/dto/AccessToken.kt">
           <value>
             <set />
@@ -388,12 +498,72 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/common/MessageAction.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/common/MessageReducer.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/common/MessageState.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/common/dto/FriendsGroup.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/common/dto/Photo.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/placegroups/FourSquareMyGroupListState.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/placegroups/FourSquareMyPlaceListVM.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/placegroups/MyPlaceItemVM.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/userinfos/UserInfosVM.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/test/java/com/sw/model/FourSquareAuthActionProcessorAndReducerTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/test/java/com/sw/model/KotlinAssertion.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/test/java/com/sw/model/utils/KotlinAssertion.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../wms-app/app/src/main/java/com/coupang/wms/mobile/app/common/databinding/BindingUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../wms-app/app/src/main/res/values/styles.xml">
           <value>
             <set />
           </value>

@@ -1,6 +1,7 @@
 package com.sw.exfoursquare.repositories.auth
 
 import com.sw.exfoursquare.base.helper.FourSquareAuthCodeHelperImpl
+import com.sw.model.base.exts.rx.loadDataWithProgressDialog
 import com.sw.model.base.exts.rx.loadWithProgressDialog
 import com.sw.model.domain.auth.repos.FourSquareAuthRepository
 import com.sw.model.domain.auth.dto.AccessToken
@@ -20,7 +21,7 @@ class FourSquareAuthRepositoryImpl(
             "EFZADCIFXY2O3YEXX3LQLAW1Q34DSDIGZIDPTI2ZGG0ONAYX",
             "authorization_code",
             authCode
-        ).loadWithProgressDialog()
+        ).loadDataWithProgressDialog()
     }
 
 }

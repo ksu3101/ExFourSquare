@@ -21,11 +21,7 @@ class FourSquareUserRepositoryImpl(
         return api.retrieveActingUserSelfDetails(
             pref.getAccessToken(),
             REQ_VERSIONING
-        ).map {
-            if (it.isAvailableResponse()) {
-                it.response!!
-            }
-        }.loadWithProgressDialog()
+        ).loadWithProgressDialog().map { it.user }
     }
 
 }

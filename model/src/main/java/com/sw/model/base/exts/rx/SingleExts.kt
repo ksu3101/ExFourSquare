@@ -21,6 +21,14 @@ private fun <T> handleResponse(it: FsqResponse<T>): Single<T> {
     }
 }
 
+fun <T> Single<T>.loadDataWithProgressDialog(): Single<T> {
+    val progressDialog: ProgressDialogHelper = GlobalContext.get().koin.get()
+    return this.subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnSubscribe { progressDialog.show() }
+        .doFinally { progressDialog.hide() }
+}
+
 fun <T> Single<FsqResponse<T>>.loadWithProgressDialog(): Single<T> {
     val progressDialog: ProgressDialogHelper = GlobalContext.get().koin.get()
     return this.subscribeOn(Schedulers.io())

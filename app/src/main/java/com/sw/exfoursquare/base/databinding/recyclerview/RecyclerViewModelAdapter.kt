@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.sw.common.extensions.getElement
@@ -18,15 +20,11 @@ typealias ViewTypeProvider<T> = ((itemByPosition: T) -> Int) // return @LayoutRe
  * @since 2019-11-14
  */
 class RecyclerViewModelAdapter<E>(
-    private var items: List<E> = emptyList(),
+    private var items: ObservableList<E> = ObservableArrayList(),
     private val viewTypeProvider: ViewTypeProvider<E>? = null,
     private val onItemClickListener: ((E) -> Unit)? = null
 ) : RecyclerView.Adapter<DatabindingViewHolder>() {
-
-    fun setItems(items: List<E>) {
-        this.items = items
-        notifyDataSetChanged()
-    }
+    private val onListChangedListener = OnListChangedListener<ObservableList<E>>(this)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DatabindingViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -67,5 +65,30 @@ class DatabindingViewHolder(
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
     val binder: ViewDataBinding? = DataBindingUtil.bind(itemView)
+}
+
+private class OnListChangedListener<T : ObservableList<*>>(
+    val adapter: RecyclerViewModelAdapter<*>
+) : ObservableList.OnListChangedCallback<T>() {
+    override fun onChanged(sender: T) {
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onItemRangeRemoved(sender: T, positionStart: Int, itemCount: Int) {
+        adapter.notifyItemRangeRemoved(positionStart, itemCount)
+    }
+
+    override fun onItemRangeMoved(sender: T, fromPosition: Int, toPosition: Int, itemCount: Int) {
+        adapter.notifyItemMoved(fromPosition, itemCount)
+    }
+
+    override fun onItemRangeInserted(sender: T, positionStart: Int, itemCount: Int) {
+        adapter.notifyItemRangeInserted(positionStart, itemCount)
+    }
+
+    override fun onItemRangeChanged(sender: T, positionStart: Int, itemCount: Int) {
+        adapter.notifyItemChanged(positionStart, itemCount)
+    }
+
 }
 

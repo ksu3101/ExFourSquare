@@ -5,19 +5,20 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.example.model.domain.common.HandledMessageAction
-import com.example.model.domain.common.MessageState
-import com.example.model.domain.common.ShowingErrorToast
-import com.example.model.domain.common.ShowingErrorToastState
-import com.example.model.domain.common.ShowingGeneralToastState
-import com.example.model.domain.common.ShowingOneButtonDialogState
-import com.example.model.domain.common.ShowingReTryActionDialogState
+import com.sw.model.domain.common.HandledMessageAction
+import com.sw.model.domain.common.MessageState
+import com.sw.model.domain.common.ShowingErrorToast
+import com.sw.model.domain.common.ShowingErrorToastState
+import com.sw.model.domain.common.ShowingGeneralToastState
+import com.sw.model.domain.common.ShowingOneButtonDialogState
+import com.sw.model.domain.common.ShowingReTryActionDialogState
 import com.sw.common.INTENT_REQUEST_AUTH_CODE
 import com.sw.common.INTENT_RESULT_CODE
 import com.sw.common.INTENT_RESULT_DENIED
 import com.sw.common.INTENT_RESULT_ERROR
 import com.sw.common.INTENT_RESULT_ERROR_MESSAGE
 import com.sw.common.KOIN_CURRENT_ACTIVITY
+import com.sw.exfoursquare.R
 import com.sw.model.base.helper.MessageHelper
 import com.sw.model.domain.AppStore
 import com.sw.model.domain.auth.RequestAccessTokenByAuthCodeAction
@@ -139,7 +140,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 }
             }
             else -> {
-                stateStore.dispatch(ShowingErrorToast(com.sw.exfoursquare.R.string.c_error_canceled_authcode))
+                stateStore.dispatch(ShowingErrorToast(R.string.c_error_canceled_authcode))
             }
         }
     }

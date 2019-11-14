@@ -7,6 +7,10 @@ import com.sw.model.domain.common.dto.Photo
  * @author burkd
  * @since 2019-11-14
  */
+data class UserWrapper(
+    val user: User
+)
+
 data class User(
     val id: String,
     val firstName: String,
@@ -40,7 +44,7 @@ data class Tips(
 )
 
 data class Contact(
-    val verifiedPhone: Boolean,
+    val verifiedPhone: String,  // to boolean
     val email: String
 )
 
@@ -71,13 +75,47 @@ data class Lists(
 data class ListGroups(
     val type: String,
     val count: Int,
-    val items: List<ListItem>
+    val items: List<PlaceItem>
 )
 
-data class ListItem(
+data class PlaceItem(
     val id: String,
     val name: String,
     val description: String,
-    val type: String
+    val type: String,
+    val photo: PlacePhoto
     // 일단 필요하다고 생각 되는 것 들만
+)
+
+data class PlacePhoto(
+    val id: String,
+    val prefix: String,
+    val suffix: String,
+    val width: Int,
+    val height: Int
+    // 일단 필요하다고 생각 되는 것 들만
+)
+
+
+val DUMMY_USER = User(
+    "12345",
+    "kang",
+    "sungwoo",
+    "none",
+    "self",
+    Photo("https://", ""),
+    Friends(0, emptyList()),
+    System.currentTimeMillis(),
+    Tips(0),
+    "seoul",
+    Contact("false", "asdf@naver.com"),
+    Photos(0, emptyList()),
+    "self",
+    MayorShips(0),
+    CheckIns(0),
+    Requests(0),
+    Lists(0, emptyList()),
+    "none",
+    System.currentTimeMillis(),
+    "U-1234"
 )

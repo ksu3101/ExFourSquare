@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="def_anim_duration_short">100</integer>
+    <integer name="btn_enter_anim_duration">50</integer>
+    <integer name="btn_exit_anim_duration">150</integer>
+</resources>

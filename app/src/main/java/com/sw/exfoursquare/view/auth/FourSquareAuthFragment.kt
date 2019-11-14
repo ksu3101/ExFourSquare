@@ -1,4 +1,4 @@
-package com.sw.exfoursquare.view
+package com.sw.exfoursquare.view.auth
 
 import com.sw.exfoursquare.R
 import com.sw.exfoursquare.base.BaseFragment

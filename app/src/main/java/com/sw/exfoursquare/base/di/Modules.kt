@@ -1,7 +1,6 @@
 package com.sw.exfoursquare.base.di
 
 import android.preference.PreferenceManager
-import com.example.model.domain.common.MessageReducer
 import com.sw.common.IS_MOCK
 import com.sw.common.KOIN_CURRENT_ACTIVITY
 import com.sw.common.QUALIFIER_FOURSQUARE_AUTH
@@ -15,9 +14,14 @@ import com.sw.exfoursquare.base.helper.SharedPreferenceHelperImpl
 import com.sw.exfoursquare.repositories.auth.FourSquareAuthApi
 import com.sw.exfoursquare.repositories.auth.FourSquareAuthRepositoryImpl
 import com.sw.exfoursquare.repositories.auth.FourSquareAuthRepositoryMockImpl
+import com.sw.exfoursquare.repositories.user.FourSquareUserRepositoryImpl
+import com.sw.exfoursquare.repositories.user.FourSquareUserRepositoryMockImpl
+import com.sw.exfoursquare.repositories.user.FourSquareUsersApi
+import com.sw.exfoursquare.view.auth.FourSquareUserAuthNavigationHelperImpl
 import com.sw.model.base.BaseLifecycleOwnViewModel
 import com.sw.model.base.helper.FourSquareAuthCodeHelper
 import com.sw.model.base.helper.MessageHelper
+import com.sw.model.base.helper.NavigationHelper
 import com.sw.model.base.helper.ProgressDialogHelper
 import com.sw.model.base.helper.ResourceHelper
 import com.sw.model.base.helper.SharedPreferenceHelper
@@ -25,6 +29,7 @@ import com.sw.model.base.redux.ActionProcessorMiddleWare
 import com.sw.model.base.redux.CombinedActionProcessors
 import com.sw.model.base.redux.LoggerMiddleware
 import com.sw.model.base.redux.Middleware
+import com.sw.model.base.redux.Reducer
 import com.sw.model.domain.AppReducer
 import com.sw.model.domain.AppState
 import com.sw.model.domain.AppStore
@@ -32,6 +37,7 @@ import com.sw.model.domain.auth.FourSquareAuthActionProcessor
 import com.sw.model.domain.auth.FourSquareAuthReducer
 import com.sw.model.domain.auth.FourSquareAuthState
 import com.sw.model.domain.auth.FourSquareAuthVM
+import com.sw.model.domain.common.MessageReducer
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
@@ -68,9 +74,10 @@ val appModule = module {
                 CombinedActionProcessors(
                     listOf(
                         FourSquareAuthActionProcessor(
-                            get(parameters = { parametersOf(IS_MOCK) }),
-                            get(),
-                            get()
+                            authRepo = get(parameters = { parametersOf(IS_MOCK) }),
+                            userRepo = get(parameters = { parametersOf(IS_MOCK) }),
+                            prefHelper = get(),
+                            resourceHelper = get()
                         )
                     )
                 )
@@ -119,6 +126,17 @@ val repositories = module {
         else
             FourSquareAuthRepositoryImpl(get())
     }
+
+    single<FourSquareUsersApi> {
+        get<Retrofit>(named(QUALIFIER_FOURSQUARE_USER))
+            .create(FourSquareUsersApi::class.java)
+    }
+    single { (isMock: Boolean) ->
+        if (isMock)
+            FourSquareUserRepositoryMockImpl()
+        else
+            FourSquareUserRepositoryImpl(get(), get())
+    }
 }
 
 val helpers = module {
@@ -126,10 +144,15 @@ val helpers = module {
     single<MessageHelper> { MessageHelperImpl(getKoin().currentActivity()) }
     single<ResourceHelper> { ResourceHelperImpl(androidApplication()) }
     single<ProgressDialogHelper> { ProgressDialogHelperImpl() }
+    single<NavigationHelper<FourSquareAuthState>> { FourSquareUserAuthNavigationHelperImpl(getKoin().currentActivity()) }
 }
 
 val reducers = module {
-    single { FourSquareAuthReducer() }
+    single<List<Reducer<*>>> {
+        listOf(
+            FourSquareAuthReducer()
+        )
+    }
 }
 
 val viewModels = module {

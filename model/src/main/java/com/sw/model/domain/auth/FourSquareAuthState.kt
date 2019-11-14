@@ -10,6 +10,10 @@ import com.sw.model.domain.auth.dto.User
 
 sealed class FourSquareAuthState : State
 
+object InitializedState : FourSquareAuthState()
+
+object ReceiveActingUserDetailFailed : FourSquareAuthState()
+
 data class ReceivedActingUserDetails(
     val user: User
-): FourSquareAuthState()
+) : FourSquareAuthState()

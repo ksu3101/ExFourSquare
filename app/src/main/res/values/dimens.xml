@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="btn_default_radius">12dp</dimen>
+    <dimen name="btn_default_min_height">76dp</dimen>
+    <dimen name="btn_default_textsize">26dp</dimen>
+
+</resources>

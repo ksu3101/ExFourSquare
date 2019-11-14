@@ -1,6 +1,8 @@
 package com.sw.exfoursquare.base.databinding.recyclerview
 
+import androidx.annotation.LayoutRes
 import androidx.databinding.BindingAdapter
+import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,12 +17,31 @@ import kotlin.math.roundToInt
 @BindingAdapter(value = ["items", "ViewProvider", "onItemClickListener"], requireAll = false)
 fun <E> bindItems(
     rv: RecyclerView,
-    items: List<E>,
+    items: ObservableList<E>,
     viewTypeProvider: ViewTypeProvider<E>? = null,
     onItemClickListener: ((E) -> Unit)? = null
 ) {
-    val adapter = RecyclerViewModelAdapter(items, viewTypeProvider, onItemClickListener)
-    rv.adapter = adapter
+    if (rv.adapter is RecyclerViewModelAdapter<*>) {
+        rv.adapter?.notifyDataSetChanged()
+    } else {
+        val adapter = RecyclerViewModelAdapter(items, viewTypeProvider, onItemClickListener)
+        rv.adapter = adapter
+    }
+}
+
+@BindingAdapter(value = ["items", "itemViewResId", "onItemClickListener"], requireAll = false)
+fun <E> bindItems(
+    rv: RecyclerView,
+    items: ObservableList<E>,
+    @LayoutRes itemViewResId: Int,
+    onItemClickListener: ((E) -> Unit)? = null
+) {
+    if (rv.adapter is RecyclerViewModelAdapter<*>) {
+        rv.adapter?.notifyDataSetChanged()
+    } else {
+        val adapter = RecyclerViewModelAdapter(items, { itemViewResId }, onItemClickListener)
+        rv.adapter = adapter
+    }
 }
 
 @BindingAdapter("layoutVertical")

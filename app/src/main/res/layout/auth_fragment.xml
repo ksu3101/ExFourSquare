@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="vm"
             type="com.sw.model.domain.auth.FourSquareAuthVM" />
@@ -9,6 +13,201 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <!-- auth -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:visibility="@{vm.isAuthenticationFailed}"
+            tools:visibility="gone">
+
+            <ImageView
+                android:id="@+id/auth_ico_retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="210dp"
+                android:src="@drawable/ic_error" />
+
+            <TextView
+                android:id="@+id/auth_tv_retry_guide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/auth_ico_retry"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:lineSpacingExtra="8dp"
+                android:text="@string/auth_retry_guide"
+                android:textColor="#5eb7b7"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <Button
+                style="@style/BaseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/auth_tv_retry_guide"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:drawableLeft="@drawable/foursquare_ic"
+                android:drawablePadding="14dp"
+                android:gravity="center"
+                android:onClick="@{() -> vm.onClickedRetryToRequestAuthentication()}"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="@string/auth_retry_btn_labem" />
+
+        </RelativeLayout>
+
+        <!-- user infos -->
+        <RelativeLayout
+            android:id="@+id/userinfo_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:visibility="@{!vm.isAuthenticationFailed &amp;&amp; vm.isConnectionCompleted()}"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/userinfo_top_container"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:background="#5eb7b7"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="80dp"
+                    app:circleImageLoad="@{vm.userImage}"
+                    tools:background="#ffffff" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:text="@{vm.userName}"
+                    android:textColor="#fff"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    tools:text="Kang sungwoo" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:text="@{vm.userLocation}"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    tools:text="seoul" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/userinfo_top_container"
+                android:background="#96d1c7"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{vm.tipsCounter.toString()}"
+                        android:textColor="#418080"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="12" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="@string/userinfo_tips"
+                        android:textColor="#418080"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{vm.photosCounter.toString()}"
+                        android:textColor="#418080"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="0" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="@string/userinfo_photos"
+                        android:textColor="#418080"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{vm.followersCounter.toString()}"
+                        android:textColor="#418080"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="99" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="@string/userinfo_followers"
+                        android:textColor="#418080"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/userinfo_container"
+            app:items="@{vm.myPlacesGroupItems}"
+            app:itemViewResId="@{@layout/userinfos_item_groupplaces}"
+            app:onItemClickListener="@{vm.rvItemsOnClickedListner}"
+            app:layoutVertical="@{true}"
+            app:fixedItemSize="@{true}"/>
 
     </RelativeLayout>
 

@@ -6,6 +6,13 @@
     <string name="c_no">아니오 </string>
     <string name="c_error_canceled_authcode">인증 과정을 취소 하였습니다. </string>
 
+    <string name="auth_retry_guide">인증을 실패 하였습니다.\n재시도 하시겠습니까?</string>
+    <string name="auth_retry_btn_labem">인증 재시도</string>
+
+    <string name="userinfo_tips">Tips</string>
+    <string name="userinfo_photos">Photos</string>
+    <string name="userinfo_followers">Followers</string>
+
 </resources>
 
 

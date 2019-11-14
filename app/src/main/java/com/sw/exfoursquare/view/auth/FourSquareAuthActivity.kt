@@ -1,4 +1,4 @@
-package com.sw.exfoursquare.view
+package com.sw.exfoursquare.view.auth
 
 import android.os.Bundle
 import com.sw.common.extensions.replaceFragment
@@ -18,7 +18,7 @@ class FourSquareAuthActivity : BaseActivity() {
 
         replaceFragment(
             replaceFragment = FourSquareAuthFragment.newInstance(),
-            containerResId = R.id.auth_activity_frag_container
+            containerResId = R.id.fragmentContainer
         )
     }
 

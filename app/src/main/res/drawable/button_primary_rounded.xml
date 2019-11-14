@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+          android:enterFadeDuration="@integer/btn_enter_anim_duration"
+          android:exitFadeDuration="@integer/btn_exit_anim_duration">
+
+    <!-- Disabled Status -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/btn_primary_bg_disabled"/>
+            <corners android:radius="@dimen/btn_default_radius"/>
+        </shape>
+    </item>
+
+    <!-- Pressed Status -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/btn_primary_bg_pressed"/>
+            <corners android:radius="@dimen/btn_default_radius"/>
+        </shape>
+    </item>
+
+    <!-- Default Status -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/btn_primary_bg_default"/>
+            <corners android:radius="@dimen/btn_default_radius"/>
+        </shape>
+    </item>
+
+</selector>

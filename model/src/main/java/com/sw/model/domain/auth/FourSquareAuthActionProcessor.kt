@@ -1,8 +1,7 @@
 package com.sw.model.domain.auth
 
-import android.util.Log
-import com.example.model.domain.common.MessageAction
-import com.example.model.domain.common.ShowingErrorToast
+import com.sw.model.domain.common.MessageAction
+import com.sw.model.domain.common.ShowingErrorToast
 import com.sw.model.base.exts.rx.actionTransformer
 import com.sw.model.base.exts.rx.createActionProcessor
 import com.sw.model.base.helper.ResourceHelper
@@ -43,7 +42,7 @@ class FourSquareAuthActionProcessor(
     private val requestAccessToken = actionTransformer<RequestAccessTokenByAuthCodeAction> {action ->
         authRepo.requestAccessToken(action.authCode)
             .map<Action> {
-                prefHelper.saveAccessToken(it.accessToken)
+                prefHelper.saveAccessToken(it.access_token)
                 RequestActingUserDetailsAction
             }
             .onErrorReturn { handleError(it) }
