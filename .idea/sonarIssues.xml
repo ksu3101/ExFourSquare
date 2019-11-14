@@ -33,6 +33,26 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/databinding/CommonDataBindingAdapters.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/databinding/DataBindingUtils.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/databinding/recyclerview/RecyclerViewBindingAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/databinding/recyclerview/RecyclerViewModelAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/di/Modules.kt">
           <value>
             <set />
@@ -44,6 +64,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/helper/MessageHelperImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/helper/ProgressDialogHelperImpl.kt">
           <value>
             <set />
           </value>
@@ -103,6 +128,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/dialog_progress.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/build.gradle">
           <value>
             <set />
@@ -124,6 +159,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/common/src/main/java/com/sw/common/extensions/FragmentActivityExts.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/common/src/main/java/com/sw/common/extensions/ListExts.kt">
           <value>
             <set />
           </value>
@@ -168,12 +208,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/exts/rx/MaybeExts.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/exts/rx/ObservableExts.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/exts/rx/RxExts.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/exts/rx/SingleExts.kt">
           <value>
             <set />
           </value>
@@ -189,6 +239,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/helper/NavigationHelper.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/base/helper/ProgressDialogHelper.kt">
           <value>
             <set />
           </value>

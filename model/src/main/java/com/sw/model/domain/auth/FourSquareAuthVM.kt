@@ -1,6 +1,7 @@
 package com.sw.model.domain.auth
 
 import com.sw.model.base.BaseLifecycleOwnViewModel
+import com.sw.model.base.CombinedLiveData
 import com.sw.model.base.helper.FourSquareAuthCodeHelper
 import com.sw.model.base.helper.SharedPreferenceHelper
 import com.sw.model.domain.AppStore
@@ -14,6 +15,8 @@ class FourSquareAuthVM(
     val prefHelper: SharedPreferenceHelper,
     val authHelper : FourSquareAuthCodeHelper
 ) : BaseLifecycleOwnViewModel<FourSquareAuthState>() {
+
+    val isAuthenticationSuccessful = CombinedLiveData<Boolean>()
 
     init {
         prefHelper.removeAccessToken()  // reset access token

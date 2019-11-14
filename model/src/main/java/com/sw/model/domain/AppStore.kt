@@ -4,9 +4,7 @@ import android.util.Log
 import com.sw.common.LOG_TAG
 import com.sw.common.extensions.getSuperClassNames
 import com.sw.model.base.redux.Action
-import com.sw.model.base.redux.ActionProcessorMiddleWare
 import com.sw.model.base.redux.Dispatcher
-import com.sw.model.base.redux.LoggerMiddleware
 import com.sw.model.base.redux.Middleware
 import com.sw.model.base.redux.Reducer
 import com.sw.model.base.redux.State
@@ -15,9 +13,7 @@ import com.sw.model.base.redux.getStateTypeOfReducer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.BehaviorSubject
-import org.koin.core.Koin
 import org.koin.core.KoinComponent
-import org.koin.core.qualifier.named
 
 /**
  * @author ksu3101
@@ -37,7 +33,6 @@ class AppStore(
     }
 
     init {
-        Log.w("TAG", "////////////// middleWares size = ${middleWares.size}")
         dispatcher = middleWares.foldRight(dispatcher) { middleWare, next ->
             middleWare.create(this, next)
         }

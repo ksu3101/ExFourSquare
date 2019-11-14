@@ -5,6 +5,10 @@ package com.sw.common.extensions
  * @since 2019-11-13
  */
 
+inline fun <R, T> R?.ifNotNull(isNotNull: (R) -> T, isNull: () -> T): T {
+    return if (this != null) isNotNull(this) else isNull()
+}
+
 fun Any.getSuperClassNames(): String {
     var currentSuperClazz = this.javaClass.superclass
     if (!isAvailableClass(currentSuperClazz)) {

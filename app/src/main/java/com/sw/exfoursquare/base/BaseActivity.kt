@@ -3,12 +3,21 @@ package com.sw.exfoursquare.base
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.sw.common.KOIN_CURRENT_ACTIVITY
-import com.example.model.domain.common.*
+import com.example.model.domain.common.HandledMessageAction
+import com.example.model.domain.common.MessageState
+import com.example.model.domain.common.ShowingErrorToast
+import com.example.model.domain.common.ShowingErrorToastState
+import com.example.model.domain.common.ShowingGeneralToastState
+import com.example.model.domain.common.ShowingOneButtonDialogState
+import com.example.model.domain.common.ShowingReTryActionDialogState
 import com.sw.common.INTENT_REQUEST_AUTH_CODE
+import com.sw.common.INTENT_RESULT_CODE
+import com.sw.common.INTENT_RESULT_DENIED
+import com.sw.common.INTENT_RESULT_ERROR
+import com.sw.common.INTENT_RESULT_ERROR_MESSAGE
+import com.sw.common.KOIN_CURRENT_ACTIVITY
 import com.sw.model.base.helper.MessageHelper
 import com.sw.model.domain.AppStore
 import com.sw.model.domain.auth.RequestAccessTokenByAuthCodeAction
@@ -16,12 +25,6 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
-import com.sw.common.INTENT_RESULT_CODE
-import com.sw.common.INTENT_RESULT_DENIED
-import com.sw.common.INTENT_RESULT_ERROR
-import com.sw.common.INTENT_RESULT_ERROR_MESSAGE
-import java.lang.NullPointerException
-
 
 /**
  * @author burkd
@@ -108,8 +111,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.d("BaseActivity", "// onActivityResult : requestCode = $requestCode")
-
         when (requestCode) {
             INTENT_REQUEST_AUTH_CODE -> {
                 handleResultOfAuthCodeRequest(resultCode, data)
@@ -125,9 +126,6 @@ abstract class BaseActivity : AppCompatActivity() {
                 val isDenied = data.getBooleanExtra(INTENT_RESULT_DENIED, false)
                 val authCode = data.getStringExtra(INTENT_RESULT_CODE)
 
-                Log.d("BaseActivity", "// onActivityResult : authCode = $authCode")
-                Log.d("BaseActivity", "// onActivityResult : isDenied = $isDenied")
-
                 if (isDenied) {
                     val errorCode = data.getStringExtra(INTENT_RESULT_ERROR)
                     val errorMessage = data.getStringExtra(INTENT_RESULT_ERROR_MESSAGE)
@@ -136,8 +134,6 @@ abstract class BaseActivity : AppCompatActivity() {
                     } else {
                         stateStore.dispatch(ShowingErrorToast(message = errorMessage))
                     }
-                    Log.d("BaseActivity", "// onActivityResult : isDenied = $errorCode")
-                    Log.d("BaseActivity", "// onActivityResult : isDenied = $errorMessage")
                 } else {
                     stateStore.dispatch(RequestAccessTokenByAuthCodeAction(authCode))
                 }

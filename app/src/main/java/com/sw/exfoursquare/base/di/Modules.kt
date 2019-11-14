@@ -8,6 +8,7 @@ import com.sw.common.QUALIFIER_FOURSQUARE_AUTH
 import com.sw.exfoursquare.base.BaseActivity
 import com.sw.exfoursquare.base.helper.FourSquareAuthCodeHelperImpl
 import com.sw.exfoursquare.base.helper.MessageHelperImpl
+import com.sw.exfoursquare.base.helper.ProgressDialogHelperImpl
 import com.sw.exfoursquare.base.helper.ResourceHelperImpl
 import com.sw.exfoursquare.base.helper.SharedPreferenceHelperImpl
 import com.sw.exfoursquare.repositories.auth.FourSquareAuthApi
@@ -16,6 +17,7 @@ import com.sw.exfoursquare.repositories.auth.FourSquareAuthRepositoryMockImpl
 import com.sw.model.base.BaseLifecycleOwnViewModel
 import com.sw.model.base.helper.FourSquareAuthCodeHelper
 import com.sw.model.base.helper.MessageHelper
+import com.sw.model.base.helper.ProgressDialogHelper
 import com.sw.model.base.helper.ResourceHelper
 import com.sw.model.base.helper.SharedPreferenceHelper
 import com.sw.model.base.redux.ActionProcessorMiddleWare
@@ -111,10 +113,10 @@ val repositories = module {
 }
 
 val helpers = module {
-    // todo : create activity scope
     single<FourSquareAuthCodeHelper> { FourSquareAuthCodeHelperImpl(getKoin().currentActivity()) }
     single<MessageHelper> { MessageHelperImpl(getKoin().currentActivity()) }
     single<ResourceHelper> { ResourceHelperImpl(androidApplication()) }
+    single<ProgressDialogHelper> { ProgressDialogHelperImpl() }
 }
 
 val reducers = module {
@@ -131,7 +133,8 @@ val viewModels = module {
     }
 }
 
-private fun Koin.currentActivity(): BaseActivity {
+// todo : create activity scope
+fun Koin.currentActivity(): BaseActivity {
     return getProperty(KOIN_CURRENT_ACTIVITY)
         ?: throw NullPointerException("CurrentActivity is Null.")
 }
