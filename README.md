@@ -272,7 +272,7 @@ https://api.foursquare.com/v2/users/self
 ## Modules 
 빠른 유닛 테스트, 비즈니스 코드 와 뷰 코드 의 분리를 위하여 목적에 따라 각 모듈별로 분리 하였습니다. 
 
-### app package
+### app (module)
 기존 app 모듈로서 view 와 관련된 코드, 리소스들 이 있습니다. 도메인 당 1 Activity : n Fragment 형태로 구현 되며 각 Fragment 에는 n 개의 ViewModel 이 사용 될 수 있습니다. 
 
 #### base package
@@ -285,10 +285,10 @@ Base Activity, Fragment 부모 클래스들이 존재 하며, DI(Koin) 에 사�
 #### view package
 Activity, Fragment 이 존재 합니다. 
 
-### common
+### common (module)
 app, model 두 모듈에서 필요한 일반적인 Constants나 kotlin extension function 등 이 존재 합니다. String 을 common 모듈 에서 관리 합니다. 그렇기 때문에 app, model 두 모듈은 common 모듈에 대해 디펜던시를 갖고 있습니다. 
 
-### model
+### model (module)
 view 에 대한 직접적인 처리를 제외한 비즈니스 로직 들을 도메인별로 모아놓은 모듈 입니다. 
 
 #### base package
