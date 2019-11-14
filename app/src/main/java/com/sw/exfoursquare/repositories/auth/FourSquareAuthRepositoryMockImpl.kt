@@ -1,6 +1,6 @@
 package com.sw.exfoursquare.repositories.auth
 
-import com.sw.model.domain.auth.FourSquareAuthRepository
+import com.sw.model.domain.auth.repos.FourSquareAuthRepository
 import com.sw.model.domain.auth.dto.AccessToken
 import io.reactivex.Single
 

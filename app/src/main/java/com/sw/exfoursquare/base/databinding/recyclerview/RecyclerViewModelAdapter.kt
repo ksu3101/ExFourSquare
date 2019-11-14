@@ -7,12 +7,11 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.sw.common.extensions.addAll
 import com.sw.common.extensions.getElement
 import com.sw.common.extensions.ifNotNull
 import com.sw.exfoursquare.BR
 
-typealias ViewProvider<T> = ((t: T) -> Int) // return @LayoutResId!!
+typealias ViewTypeProvider<T> = ((itemByPosition: T) -> Int) // return @LayoutResId!!
 
 /**
  * @author burkd
@@ -20,17 +19,12 @@ typealias ViewProvider<T> = ((t: T) -> Int) // return @LayoutResId!!
  */
 class RecyclerViewModelAdapter<E>(
     private var items: List<E> = emptyList(),
-    private val viewProvider: ViewProvider<E>? = null,
+    private val viewTypeProvider: ViewTypeProvider<E>? = null,
     private val onItemClickListener: ((E) -> Unit)? = null
 ) : RecyclerView.Adapter<DatabindingViewHolder>() {
 
     fun setItems(items: List<E>) {
         this.items = items
-        notifyDataSetChanged()
-    }
-
-    fun addItems(items: List<E>) {
-        this.items.addAll(items)
         notifyDataSetChanged()
     }
 
@@ -60,7 +54,7 @@ class RecyclerViewModelAdapter<E>(
 
     @LayoutRes
     override fun getItemViewType(position: Int): Int {
-        return viewProvider.ifNotNull({ it(getItem(position)) }, { 0 })
+        return viewTypeProvider.ifNotNull({ it(getItem(position)) }, { 0 })
     }
 
     fun getItem(pos: Int): E {

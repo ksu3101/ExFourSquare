@@ -8,7 +8,7 @@ interface SharedPreferenceHelper {
 
     fun saveAccessToken(token: String)
 
-    fun getAccessToken(): String?
+    fun getAccessToken(): String
 
     fun removeAccessToken()
 

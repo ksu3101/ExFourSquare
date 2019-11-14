@@ -5,14 +5,14 @@ import com.example.model.domain.common.MessageAction
 import com.example.model.domain.common.ShowingErrorToast
 import com.sw.model.base.exts.rx.actionTransformer
 import com.sw.model.base.exts.rx.createActionProcessor
-import com.sw.model.base.helper.FourSquareAuthCodeHelper
 import com.sw.model.base.helper.ResourceHelper
 import com.sw.model.base.helper.SharedPreferenceHelper
 import com.sw.model.base.redux.Action
 import com.sw.model.base.redux.ActionProcessor
 import com.sw.model.base.redux.Store
 import com.sw.model.domain.AppState
-import com.sw.model.domain.AppStore
+import com.sw.model.domain.auth.repos.FourSquareAuthRepository
+import com.sw.model.domain.auth.repos.FourSquareUserRepository
 import io.reactivex.Observable
 
 /**
@@ -20,7 +20,8 @@ import io.reactivex.Observable
  * @since 2019-11-13
  */
 class FourSquareAuthActionProcessor(
-    val repo: FourSquareAuthRepository,
+    val authRepo: FourSquareAuthRepository,
+    val userRepo: FourSquareUserRepository,
     val prefHelper: SharedPreferenceHelper,
     val resourceHelper: ResourceHelper
 ) : ActionProcessor<AppState> {
@@ -34,18 +35,24 @@ class FourSquareAuthActionProcessor(
 
     private val actionProcessor = createActionProcessor { shared ->
         arrayOf(
-            shared.ofType(RequestAccessTokenByAuthCodeAction::class.java).compose(requestAccessToken)
+            shared.ofType(RequestAccessTokenByAuthCodeAction::class.java).compose(requestAccessToken),
+            shared.ofType(RequestActingUserDetailsAction::class.java).compose(requestActingUserInfos)
         )
     }
 
     private val requestAccessToken = actionTransformer<RequestAccessTokenByAuthCodeAction> {action ->
-        repo.requestAccessToken(action.authCode)
+        authRepo.requestAccessToken(action.authCode)
             .map<Action> {
-                val accessToken = it.accessToken
-                Log.d("FSQ_AP","//// FSQ_TOKEN : ${accessToken} ")
-                prefHelper.saveAccessToken(accessToken)
-                AccessTokenReceiveSuccessfulAction(accessToken)
+                prefHelper.saveAccessToken(it.accessToken)
+                RequestActingUserDetailsAction
             }
+            .onErrorReturn { handleError(it) }
+            .toObservable()
+    }
+
+    private val requestActingUserInfos = actionTransformer<RequestActingUserDetailsAction> {
+        userRepo.retrieveActingUserSelfDetails()
+            .map<Action> { ActingUserDetailReceiveSucessAction(it) }
             .onErrorReturn { handleError(it) }
             .toObservable()
     }

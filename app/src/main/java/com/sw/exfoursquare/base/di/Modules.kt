@@ -5,6 +5,7 @@ import com.example.model.domain.common.MessageReducer
 import com.sw.common.IS_MOCK
 import com.sw.common.KOIN_CURRENT_ACTIVITY
 import com.sw.common.QUALIFIER_FOURSQUARE_AUTH
+import com.sw.common.QUALIFIER_FOURSQUARE_USER
 import com.sw.exfoursquare.base.BaseActivity
 import com.sw.exfoursquare.base.helper.FourSquareAuthCodeHelperImpl
 import com.sw.exfoursquare.base.helper.MessageHelperImpl
@@ -96,6 +97,14 @@ val repositories = module {
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl("https://foursquare.com/oauth2/")
+            .client(get<OkHttpClient>())
+            .build()
+    }
+    single(named(QUALIFIER_FOURSQUARE_USER)) {
+        Retrofit.Builder()
+            .addConverterFactory(MoshiConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .baseUrl("https://api.foursquare.com/v2/users/")
             .client(get<OkHttpClient>())
             .build()
     }

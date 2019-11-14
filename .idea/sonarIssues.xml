@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
           <value>
             <set />
@@ -83,6 +88,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/base/widgets/GridItemSpaceItemDecoration.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/repositories/FsqResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/repositories/auth/FourSquareAuth.kt">
           <value>
             <set />
@@ -104,6 +119,26 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/repositories/auth/FourSquareAuthRepositoryMockImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/repositories/response/Meta.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/repositories/user/FourSquareUserRepositoryImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/repositories/user/FourSquareUsersApi.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/sw/exfoursquare/repositories/user/FourSquareUsersApi.kt">
           <value>
             <set />
           </value>
@@ -153,6 +188,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/common/src/main/java/com/sw/common/FsqResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/common/src/main/java/com/sw/common/extensions/Any.kt">
           <value>
             <set />
@@ -169,6 +209,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/common/src/main/java/com/sw/common/extensions/StringExts.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/common/src/main/java/com/sw/common/response/FsqResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/common/src/main/java/com/sw/common/response/FsqResponseExceptions.kt">
           <value>
             <set />
           </value>
@@ -319,6 +369,31 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/dto/AuthCode.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/dto/User.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/repos/FourSquareAuthRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/auth/repos/FourSquareUserRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/common/dto/FriendsGroup.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/model/src/main/java/com/sw/model/domain/common/dto/Photo.kt">
           <value>
             <set />
           </value>

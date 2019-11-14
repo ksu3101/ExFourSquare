@@ -1,6 +1,7 @@
 package com.sw.model.domain.auth
 
 import com.sw.model.base.redux.State
+import com.sw.model.domain.auth.dto.User
 
 /**
  * @author burkd
@@ -8,3 +9,7 @@ import com.sw.model.base.redux.State
  */
 
 sealed class FourSquareAuthState : State
+
+data class ReceivedActingUserDetails(
+    val user: User
+): FourSquareAuthState()

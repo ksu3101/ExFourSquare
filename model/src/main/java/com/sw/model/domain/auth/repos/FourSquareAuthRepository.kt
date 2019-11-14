@@ -1,4 +1,4 @@
-package com.sw.model.domain.auth
+package com.sw.model.domain.auth.repos
 
 import com.sw.model.domain.auth.dto.AccessToken
 import io.reactivex.Single

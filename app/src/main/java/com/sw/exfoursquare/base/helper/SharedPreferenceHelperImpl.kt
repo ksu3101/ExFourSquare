@@ -3,6 +3,7 @@ package com.sw.exfoursquare.base.helper
 import android.content.SharedPreferences
 import com.sw.common.PREF_ACCESS_TOKEN_KEY
 import com.sw.model.base.helper.SharedPreferenceHelper
+import java.lang.NullPointerException
 
 /**
  *
@@ -17,8 +18,8 @@ class SharedPreferenceHelperImpl(
         saveItem(PREF_ACCESS_TOKEN_KEY, token)
     }
 
-    override fun getAccessToken(): String? {
-        return getString(PREF_ACCESS_TOKEN_KEY)
+    override fun getAccessToken(): String {
+        return getString(PREF_ACCESS_TOKEN_KEY) ?: throw NullPointerException("유효한 인증 정보가 없습니다.")
     }
 
     override fun removeAccessToken() {

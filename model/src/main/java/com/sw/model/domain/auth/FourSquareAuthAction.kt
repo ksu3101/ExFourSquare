@@ -1,6 +1,7 @@
 package com.sw.model.domain.auth
 
 import com.sw.model.base.redux.Action
+import com.sw.model.domain.auth.dto.User
 
 /**
  * @author burkd
@@ -13,8 +14,10 @@ object RequestAuthCodeAction : FourSquareAuthAction()
 
 data class RequestAccessTokenByAuthCodeAction(
     val authCode: String
-): FourSquareAuthAction()
+) : FourSquareAuthAction()
 
-data class AccessTokenReceiveSuccessfulAction(
-    val accessToken: String
-): FourSquareAuthAction()
+object RequestActingUserDetailsAction : FourSquareAuthAction()
+
+data class ActingUserDetailReceiveSucessAction(
+    val user: User
+) : FourSquareAuthAction()

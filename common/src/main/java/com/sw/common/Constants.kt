@@ -8,12 +8,14 @@ package com.sw.common
 
 const val IS_MOCK = false   // todo : 앱 내 에서 변경 할 수 있게 수정..
 const val LOG_TAG = "ExFSQ"
+const val REQ_VERSIONING = "20191114"
 
 const val KOIN_CURRENT_ACTIVITY = "current_activity_key"
 
 const val PREF_ACCESS_TOKEN_KEY = "pref_access_token"
 
 const val QUALIFIER_FOURSQUARE_AUTH = "qualifier_foursquare_auth"
+const val QUALIFIER_FOURSQUARE_USER = "qualifier_foursquare_user"
 
 const val INTENT_REQUEST_AUTH_CODE = 900
 
