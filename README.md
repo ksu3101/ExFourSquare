@@ -3,6 +3,7 @@
 FourSquare OpenApi 를 이용 한 샘플코드 앱 입니다. 이 앱에서 하는 일은 아래와 같습니다. 
 
 1. 실행 후 액세스 토큰을 얻기 위한 code 를 설치된 four square 앱 로그인 및 권한 인증 후 activity result 로 얻습니다.
+ a. 설치된 four square 앱이 없을 경우 앱 스토어 다운로드 페이지로 이동 하며 설치 및 로그인 후 사용자 인증 까지 해야 code를 받을 수 있습니다.
 
 2. 받은 code 를 이용 하여 액세스 토큰 을 아래처럼 rest api 로 발급 받습니다. 
 ```
