@@ -1,6 +1,273 @@
 # ExFourSquare
 
-FourSquare OpenApi 를 이용 한 샘플코드 앱 입니다. "WIP..."
+FourSquare OpenApi 를 이용 한 샘플코드 앱 입니다. 이 앱에서 하는 일은 아래와 같습니다. 
+
+1. 실행 후 액세스 토큰을 얻기 위한 code 를 설치된 four square 앱 로그인 및 권한 인증 후 activity result 로 얻습니다.
+
+2. 받은 code 를 이용 하여 액세스 토큰 을 아래처럼 rest api 로 발급 받습니다. 
+```
+GET
+https://foursquare.com/oauth2/access_token
+    ?client_id=YOUR_CLIENT_ID
+    &client_secret=YOUR_CLIENT_SECRET
+    &grant_type=authorization_code
+    &code=CODE
+```
+
+3. 발급받은 액세스 코드를 이용 하여 로그인한 사용자의 정보를 보여줍니다. 
+```
+GET
+https://api.foursquare.com/v2/users/self
+    ?oauth_token=ACCESS_TOKEN
+    &v=VERSION
+```
+
+<details><summary>[JsonResponse 예제 보기]</summary>
+<p>
+  
+```
+{
+    "meta": {
+        "code": 200,
+        "requestId": "5dcdbef7660a9f0028f5e8d2"
+    },
+    "notifications": [
+        {
+            "type": "notificationTray",
+            "item": {
+                "unreadCount": 0
+            }
+        }
+    ],
+    "response": {
+        "user": {
+            "id": "565712862",
+            "firstName": "성우",
+            "lastName": "강",
+            "gender": "none",
+            "relationship": "self",
+            "canonicalUrl": "https://foursquare.com/user/565712862",
+            "photo": {
+                "prefix": "https://fastly.4sqi.net/img/user/",
+                "suffix": "/565712862_LTwgmIww_VBmD_KJivEZIApjR7Ni-j_jR5OkA50aWSL65G5lKZZ4-QfW0odVwJiyGuB2Vp8Vg.jpg"
+            },
+            "friends": {
+                "count": 0,
+                "groups": [
+                    {
+                        "type": "friends",
+                        "name": "Mutual friends",
+                        "count": 0,
+                        "items": []
+                    },
+                    {
+                        "type": "others",
+                        "name": "Other friends",
+                        "count": 0,
+                        "items": []
+                    }
+                ]
+            },
+            "birthday": 486864000,
+            "tips": {
+                "count": 0
+            },
+            "homeCity": "Seoul, Seoul",
+            "bio": "",
+            "contact": {
+                "verifiedPhone": "false",
+                "email": "burkdog@naver.com"
+            },
+            "photos": {
+                "count": 0,
+                "items": []
+            },
+            "checkinPings": "off",
+            "pings": false,
+            "type": "user",
+            "mayorships": {
+                "count": 0,
+                "items": []
+            },
+            "checkins": {
+                "count": 4,
+                "items": [
+                    {
+                        "id": "5dcd8af59ee69b00076614ac",
+                        "createdAt": 1573751541,
+                        "type": "checkin",
+                        "private": true,
+                        "visibility": "private",
+                        "timeZoneOffset": 540,
+                        "editableUntil": 1573837941000,
+                        "venue": {
+                            "id": "5b80a13d78782c002ce62cf0",
+                            "name": "Starbucks Reserve (스타벅스 리저브)",
+                            "location": {
+                                "address": "송파구 송파대로 201",
+                                "crossStreet": "문정법원로R점",
+                                "lat": 37.487411568126376,
+                                "lng": 127.11880628085092,
+                                "labeledLatLngs": [
+                                    {
+                                        "label": "display",
+                                        "lat": 37.487411568126376,
+                                        "lng": 127.11880628085092
+                                    }
+                                ],
+                                "postalCode": "05854",
+                                "cc": "KR",
+                                "city": "Seoul",
+                                "state": "Seoul",
+                                "country": "South Korea",
+                                "formattedAddress": [
+                                    "송파구 송파대로 201 (문정법원로R점)",
+                                    "문정2동",
+                                    "송파구",
+                                    "서울특별시",
+                                    "05854"
+                                ]
+                            },
+                            "categories": [
+                                {
+                                    "id": "4bf58dd8d48988d1e0931735",
+                                    "name": "Coffee Shop",
+                                    "pluralName": "Coffee Shops",
+                                    "shortName": "Coffee Shop",
+                                    "icon": {
+                                        "prefix": "https://ss3.4sqi.net/img/categories_v2/food/coffeeshop_",
+                                        "suffix": ".png"
+                                    },
+                                    "primary": true
+                                }
+                            ],
+                            "like": false
+                        },
+                        "likes": {
+                            "count": 0,
+                            "groups": []
+                        },
+                        "like": false,
+                        "isMayor": false,
+                        "photos": {
+                            "count": 0,
+                            "items": []
+                        },
+                        "posts": {
+                            "count": 0,
+                            "textCount": 0
+                        },
+                        "comments": {
+                            "count": 0
+                        },
+                        "source": {
+                            "name": "Foursquare for Android",
+                            "url": "https://foursquare.com/download/#/android"
+                        }
+                    }
+                ]
+            },
+            "requests": {
+                "count": 0
+            },
+            "lists": {
+                "count": 4,
+                "groups": [
+                    {
+                        "type": "created",
+                        "count": 1,
+                        "items": [
+                            {
+                                "id": "5dcd8bdeabe9110006c5ec59",
+                                "name": "임시 목록",
+                                "description": "ㅇㅇㅇㅇㅇㅇㅇㅇ",
+                                "editable": true,
+                                "public": true,
+                                "collaborative": false,
+                                "url": "/user/565712862/list/%EC%9E%84%EC%8B%9C-%EB%AA%A9%EB%A1%9D",
+                                "canonicalUrl": "https://foursquare.com/user/565712862/list/%EC%9E%84%EC%8B%9C-%EB%AA%A9%EB%A1%9D",
+                                "createdAt": 1573751774,
+                                "updatedAt": 1573751784,
+                                "photo": {
+                                    "id": "55dff7e3498edc6aff1b3339",
+                                    "createdAt": 1440741347,
+                                    "prefix": "https://fastly.4sqi.net/img/general/",
+                                    "suffix": "/18752869_LYEnmRfLN-3R5CymQdBMi35XuY4G-JOH6irNqoJEDcI.jpg",
+                                    "width": 1920,
+                                    "height": 1440,
+                                    "user": {
+                                        "id": "18752869",
+                                        "firstName": "yk",
+                                        "gender": "none",
+                                        "photo": {
+                                            "prefix": "https://fastly.4sqi.net/img/user/",
+                                            "suffix": "/18752869-5FJLTMDYEMKMQDVS.jpg"
+                                        }
+                                    },
+                                    "visibility": "public"
+                                },
+                                "followers": {
+                                    "count": 0
+                                },
+                                "listItems": {
+                                    "count": 2
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "followed",
+                        "count": 1,
+                        "items": []
+                    },
+                    {
+                        "type": "yours",
+                        "count": 2,
+                        "items": [
+                            {
+                                "id": "565712862/todos",
+                                "name": "My Saved Places",
+                                "description": "",
+                                "type": "todos",
+                                "editable": true,
+                                "public": true,
+                                "collaborative": false,
+                                "url": "/user/565712862/list/todos",
+                                "canonicalUrl": "https://foursquare.com/user/565712862/list/todos",
+                                "listItems": {
+                                    "count": 7
+                                }
+                            },
+                            {
+                                "id": "565712862/venuelikes",
+                                "name": "My Liked Places",
+                                "description": "",
+                                "type": "likes",
+                                "editable": true,
+                                "public": true,
+                                "collaborative": false,
+                                "url": "/user/565712862/list/venuelikes",
+                                "canonicalUrl": "https://foursquare.com/user/565712862/list/venuelikes",
+                                "listItems": {
+                                    "count": 0
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "blockedStatus": "none",
+            "createdAt": 1573573116,
+            "lenses": [],
+            "referralId": "u-565712862"
+        }
+    }
+}
+```
+
+</p>
+</details>
+
 
 ## Modules 
 빠른 유닛 테스트, 비즈니스 코드 와 뷰 코드 의 분리를 위하여 목적에 따라 각 모듈별로 분리 하였습니다. 
@@ -51,8 +318,8 @@ Middleware 를 통해 최종적으로 나온 Action 을 핸들링 하여 화면�
 - Kotlin
 - AndroidX
 - Databinding
-- Koin - (Dependency injection tool)
+- Koin, Koin-test
 - retrofit + okHttp + moshi
 - rxJava2
 - junit + mockito
-- 그 외 필요한 것 은 직접 kotlin extension function 으로 만듦. 
+- 그 외 필요한 것 은 kotlin extension function 으로 만듦. 
